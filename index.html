@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FPI Scuole – Fondi Paritetici Interprofessionali per Scuole Paritarie</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@300;400;600;700;800&family=Barlow:ital,wght@0,300;0,400;0,500;0,600;1,300&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy-deep:   #14223a;
+    --navy-mid:    #1c3260;
+    --steel:       #8aaec8;
+    --steel-pale:  #dce8f0;
+    --gray:        #787878;
+    --gold:        #c08030;
+    --gold-light:  #d4943e;
+    --bg:          #f5f7fa;
+    --bg-alt:      #edf1f6;
+    --text:        #14223a;
+    --text-soft:   #3d5070;
+    --divider:     rgba(20,34,58,0.1);
+    --white:       #ffffff;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Barlow', sans-serif;
+    font-weight: 400;
+    line-height: 1.65;
+    overflow-x: hidden;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 1.1rem 5vw;
+    background: rgba(245,247,250,0.94);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--divider);
+  }
+  .nav-logo {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 700; font-size: 1rem;
+    letter-spacing: .13em; text-transform: uppercase;
+    color: var(--navy-deep); text-decoration: none;
+  }
+  .nav-logo span { color: var(--gold); }
+  .nav-cta {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 600; font-size: .82rem;
+    letter-spacing: .16em; text-transform: uppercase;
+    color: var(--white); background: var(--gold);
+    text-decoration: none; padding: .5rem 1.3rem;
+    transition: background .2s;
+  }
+  .nav-cta:hover { background: var(--gold-light); }
+
+  /* ── HERO ── */
+  .hero {
+    padding: 9rem 5vw 5rem;
+    background: var(--navy-deep);
+    position: relative; overflow: hidden;
+  }
+  .hero::after {
+    content: '';
+    position: absolute; bottom: -1px; left: 0; right: 0;
+    height: 60px;
+    background: var(--white);
+    clip-path: ellipse(55% 100% at 50% 100%);
+  }
+  .hero-deco {
+    position: absolute; right: -6vw; top: 50%;
+    transform: translateY(-50%);
+    width: 52vw; max-width: 640px;
+    opacity: .05; pointer-events: none;
+  }
+  .hero-inner {
+    max-width: 780px; margin: 0 auto;
+    position: relative; z-index: 1;
+    text-align: center;
+  }
+  .hero-eyebrow {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 600; font-size: clamp(.85rem, 2.2vw, .9rem);
+    letter-spacing: .26em; text-transform: uppercase;
+    color: var(--steel); margin-bottom: 1.4rem;
+  }
+  .hero h1 {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 800; line-height: 1.03;
+    font-size: clamp(2.8rem, 7vw, 4.8rem);
+    color: #ffffff; margin-bottom: 1.6rem;
+  }
+  .hero h1 em { font-style: normal; color: var(--gold); }
+  .hero-sub {
+    font-size: clamp(1.05rem, 2.8vw, 1.2rem);
+    color: var(--steel-pale); max-width: 56ch;
+    margin: 0 auto 1.2rem; font-weight: 300;
+  }
+  .hero-alert {
+    font-weight: 600; font-size: clamp(1.05rem, 2.8vw, 1.15rem);
+    color: #ffffff; max-width: 52ch;
+    margin: 0 auto 2.8rem;
+    border-left: 3px solid var(--gold);
+    padding: .6rem 1rem .6rem 1.2rem;
+    text-align: left; background: rgba(192,128,48,0.12);
+  }
+  .btn-group {
+    display: flex; gap: 1rem; flex-wrap: wrap;
+    justify-content: center;
+  }
+  .btn-primary {
+    display: inline-flex; align-items: center; gap: .5rem;
+    background: var(--gold); color: #fff;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 700; font-size: clamp(.95rem, 2.5vw, 1rem);
+    letter-spacing: .15em; text-transform: uppercase;
+    padding: .9rem 2rem; text-decoration: none;
+    transition: background .2s, transform .15s;
+  }
+  .btn-primary:hover { background: var(--gold-light); transform: translateY(-2px); }
+  .btn-secondary {
+    display: inline-flex; align-items: center; gap: .5rem;
+    border: 1.5px solid rgba(138,174,200,.5); color: var(--steel-pale);
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 600; font-size: clamp(.95rem, 2.5vw, 1rem);
+    letter-spacing: .15em; text-transform: uppercase;
+    padding: .9rem 2rem; text-decoration: none;
+    transition: border-color .2s, color .2s, transform .15s;
+  }
+  .btn-secondary:hover { border-color: #fff; color: #fff; transform: translateY(-2px); }
+
+  /* ── SECTIONS ── */
+  .section { padding: 5rem 5vw; }
+  .section-alt { background: var(--bg-alt); }
+  .section-white { background: var(--white); }
+  .section-inner { max-width: 1100px; margin: 0 auto; }
+
+  .section-label {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 600; font-size: clamp(.78rem, 2vw, .82rem);
+    letter-spacing: .26em; text-transform: uppercase;
+    color: var(--gold); margin-bottom: .8rem;
+    display: flex; align-items: center; gap: .7rem;
+  }
+  .section-label::before {
+    content: ''; display: block;
+    width: 1.4rem; height: 2px; background: var(--gold); flex-shrink: 0;
+  }
+  .section-title {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 800; line-height: 1.05;
+    font-size: clamp(2.1rem, 4.5vw, 3rem);
+    color: var(--navy-deep); margin-bottom: 2rem;
+  }
+  .section-title em { font-style: normal; color: var(--navy-mid); }
+
+  /* ── COME FUNZIONA ── */
+  .funziona-grid {
+    display: grid;
+    grid-template-columns: 1.1fr 0.9fr;
+    gap: 4rem; align-items: start;
+  }
+  .funziona-text p {
+    font-size: clamp(1rem, 2.5vw, 1.05rem);
+    color: var(--text-soft); margin-bottom: 1.2rem; max-width: 54ch;
+  }
+  .funziona-text p strong { color: var(--navy-deep); font-weight: 600; }
+
+  .plafond-block { margin-top: .5rem; }
+  .plafond-item {
+    border-left: 3px solid var(--gold);
+    padding: 1.2rem 1.5rem; margin-bottom: 1rem;
+    background: var(--bg); box-shadow: 0 2px 12px rgba(20,34,58,.06);
+  }
+  .plafond-amount {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 800; font-size: clamp(1.9rem, 4vw, 2.3rem);
+    color: var(--gold); line-height: 1.1;
+  }
+  .plafond-note {
+    font-size: clamp(.88rem, 2vw, .92rem); color: var(--gray); margin-top: .25rem;
+  }
+  .plafond-disclaimer {
+    font-size: clamp(.78rem, 2vw, .82rem);
+    color: var(--gray); font-style: italic;
+    border-top: 1px solid var(--divider);
+    padding-top: 1rem; margin-top: .5rem; line-height: 1.55;
+  }
+
+  /* ── AFFIANCAMENTO ── */
+  .affiancamento-grid {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 4rem; align-items: start;
+  }
+  .affiancamento-text p {
+    font-size: clamp(1rem, 2.5vw, 1.05rem);
+    color: var(--text-soft); margin-bottom: 1.2rem; max-width: 54ch;
+  }
+  .pills { display: flex; flex-wrap: wrap; gap: .5rem; margin-top: 1.4rem; }
+  .pill {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: clamp(.8rem, 2vw, .84rem); letter-spacing: .12em; text-transform: uppercase;
+    padding: .35rem .9rem; border: 1.5px solid var(--steel); color: var(--navy-mid);
+  }
+  .note-box {
+    margin-top: 1.8rem; padding: 1.2rem 1.5rem;
+    background: var(--steel-pale); border-left: 3px solid var(--navy-mid);
+  }
+  .note-box p {
+    font-size: clamp(.92rem, 2.3vw, .98rem);
+    color: var(--navy-deep); margin: 0 !important; font-style: italic;
+  }
+
+  /* ── CTA ── */
+  .cta-section {
+    background: var(--navy-deep);
+    padding: 5rem 5vw 5.5rem;
+    position: relative; overflow: hidden;
+  }
+  .cta-section::before {
+    content: '';
+    position: absolute; top: -1px; left: 0; right: 0;
+    height: 60px; background: var(--bg-alt);
+    clip-path: ellipse(55% 100% at 50% 0%);
+  }
+  .cta-inner { max-width: 1100px; margin: 0 auto; }
+  .cta-heading {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 800; font-size: clamp(2.1rem, 5vw, 3.2rem);
+    color: #fff; margin-bottom: 3rem; text-align: center;
+  }
+  .cta-heading em { font-style: normal; color: var(--gold); }
+  .cta-grid {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem;
+  }
+  .cta-card {
+    background: rgba(255,255,255,.05);
+    border: 1px solid rgba(138,174,200,.2);
+    padding: 2.2rem 2.4rem;
+    transition: border-color .2s, background .2s;
+  }
+  .cta-card:hover { border-color: var(--gold); background: rgba(192,128,48,.06); }
+  .cta-card-icon { font-size: 1.6rem; color: var(--gold); margin-bottom: 1rem; }
+  .cta-card h3 {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 700; font-size: clamp(1.35rem, 3.5vw, 1.6rem);
+    color: #fff; margin-bottom: .8rem;
+  }
+  .cta-card p {
+    font-size: clamp(.92rem, 2.3vw, .98rem);
+    color: var(--steel-pale); margin-bottom: 2rem; line-height: 1.6;
+  }
+
+  /* ── FOOTER ── */
+  footer {
+    background: var(--navy-deep);
+    border-top: 1px solid rgba(138,174,200,.15);
+    padding: 1.8rem 5vw;
+    display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: .8rem;
+  }
+  .footer-logo {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 700; font-size: .95rem; letter-spacing: .13em;
+    color: rgba(255,255,255,.4); text-transform: uppercase;
+  }
+  .footer-logo span { color: var(--gold); }
+  footer p { font-size: .78rem; color: rgba(255,255,255,.3); }
+
+  /* ── MOBILE ── */
+  @media (max-width: 760px) {
+    .funziona-grid,
+    .affiancamento-grid,
+    .cta-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+    .hero { padding: 8rem 5vw 4rem; }
+    .section { padding: 4rem 5vw; }
+  }
+
+  /* ── ANIMATIONS ── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  .a  { animation: fadeUp .65s ease both; }
+  .d1 { animation-delay: .05s; }
+  .d2 { animation-delay: .2s; }
+  .d3 { animation-delay: .35s; }
+  .d4 { animation-delay: .5s; }
+  .d5 { animation-delay: .65s; }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="nav-logo">BLM PR<span>✳</span>JECT</a>
+  <a href="https://calendar.app.google/eDDatocxo7WVHbga6" target="_blank" rel="noopener" class="nav-cta">Prenota una call</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <svg class="hero-deco" viewBox="0 0 200 200" fill="none" aria-hidden="true">
+    <line x1="100" y1="5"   x2="100" y2="195" stroke="white" stroke-width="8"/>
+    <line x1="5"   y1="100" x2="195" y2="100" stroke="white" stroke-width="8"/>
+    <line x1="25"  y1="25"  x2="175" y2="175" stroke="white" stroke-width="8"/>
+    <line x1="175" y1="25"  x2="25"  y2="175" stroke="white" stroke-width="8"/>
+    <line x1="14"  y1="60"  x2="186" y2="140" stroke="white" stroke-width="8"/>
+    <line x1="14"  y1="140" x2="186" y2="60"  stroke="white" stroke-width="8"/>
+  </svg>
+  <div class="hero-inner">
+    <p class="hero-eyebrow a d1">FPI Scuole · BLM Project</p>
+    <h1 class="a d2">Fondi interprofessionali<br>per <em>Scuole Paritarie</em></h1>
+    <p class="hero-sub a d3">Ogni mese versate un contributo che potrebbe finanziare la formazione del Vostro personale.</p>
+    <p class="hero-alert a d4">Nella maggior parte delle scuole paritarie, quella quota non arriva mai a destinazione.</p>
+    <div class="btn-group a d5">
+      <a href="https://drive.google.com/uc?export=download&id=1dP2sGObsdG4mqUO4USl4YSuUt9HJbbeU" target="_blank" rel="noopener" class="btn-primary">↓ Scarica la guida gratuita</a>
+      <a href="https://calendar.app.google/eDDatocxo7WVHbga6" target="_blank" rel="noopener" class="btn-secondary">Prenota una call →</a>
+    </div>
+  </div>
+</section>
+
+<!-- COME FUNZIONA -->
+<section class="section section-white" id="come-funziona">
+  <div class="section-inner">
+    <div class="funziona-grid">
+      <div class="funziona-text">
+        <p class="section-label">Come funziona</p>
+        <h2 class="section-title">Lo 0,30% che<br>già versate <em>ogni mese</em></h2>
+        <p>Le scuole paritarie, in quanto datori di lavoro privati, versano ogni mese all'INPS il contributo dello <strong>0,30% sulla retribuzione di ogni dipendente</strong>. Per impostazione predefinita, quella quota confluisce nel bilancio previdenziale generale.</p>
+        <p>Aderendo a un fondo paritetico interprofessionale, la stessa quota viene destinata a un <strong>conto formazione intestato alla scuola</strong>, da cui attingere per finanziare piani formativi riconosciuti dal fondo.</p>
+        <p>Le risorse accumulate restano disponibili per un triennio; trascorso questo periodo rientrano nella mutualità del fondo. Scegliere il fondo più adatto alla propria realtà è il primo passo.</p>
+      </div>
+      <div class="plafond-block">
+        <p class="section-label">Plafond stimato · Fonder</p>
+        <div class="plafond-item">
+          <div class="plafond-amount">~ 5.650 €/anno</div>
+          <div class="plafond-note">Scuola tra 16 e 30 dipendenti</div>
+        </div>
+        <div class="plafond-item">
+          <div class="plafond-amount">+ 6.800 €/anno</div>
+          <div class="plafond-note">Scuola tra 31 e 50 dipendenti</div>
+        </div>
+        <p class="plafond-disclaimer">Stime indicative calcolate su Fonder, il fondo paritetico interprofessionale di riferimento principale per le scuole paritarie. Il plafond effettivo dipende dal fondo scelto e dalla retribuzione media dei dipendenti.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- AFFIANCAMENTO -->
+<section class="section section-alt" id="affiancamento">
+  <div class="section-inner">
+    <div class="affiancamento-grid">
+      <div>
+        <p class="section-label">Il nostro affiancamento</p>
+        <h2 class="section-title">Gestione tecnica<br>e <em>amministrativa</em>,<br>senza oneri interni</h2>
+      </div>
+      <div class="affiancamento-text">
+        <p>BLM Project affianca le scuole paritarie nella gestione tecnica e amministrativa: scelta del fondo più adatto, adesione, costruzione del piano formativo, rendicontazione, scadenze; senza oneri operativi per gli uffici interni.</p>
+        <p>L'affiancamento è attivabile in qualsiasi fase, sia in caso di prima adesione sia per scuole che hanno già un fondo attivo. Il nostro intervento può partire in qualsiasi momento del percorso, non necessariamente dall'adesione iniziale.</p>
+        <p>Per ambiti in cui abbiamo esperienza consolidata nel settore scolastico — intelligenza artificiale e sostenibilità — possiamo gestire direttamente l'erogazione. Su esigenze formative specifiche vengono attivati formatori qualificati.</p>
+        <div class="pills">
+          <span class="pill">Prima adesione</span>
+          <span class="pill">Fondo già attivo</span>
+          <span class="pill">Piano formativo</span>
+          <span class="pill">Rendicontazione</span>
+          <span class="pill">Intelligenza artificiale</span>
+          <span class="pill">Sostenibilità</span>
+        </div>
+        <div class="note-box">
+          <p>Qualora la scuola disponga già di propri referenti formativi, il nostro intervento valorizza i percorsi già in essere.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA FINALE -->
+<section class="cta-section" id="inizia">
+  <div class="cta-inner">
+    <h2 class="cta-heading">Da dove vuoi <em>iniziare?</em></h2>
+    <div class="cta-grid">
+      <div class="cta-card" id="guida">
+        <div class="cta-card-icon">↓</div>
+        <h3>Scarica la guida gratuita</h3>
+        <p>Un documento che spiega il funzionamento dei fondi paritetici interprofessionali per le scuole paritarie, i criteri di scelta del fondo e i passaggi operativi.</p>
+        <a href="https://drive.google.com/uc?export=download&id=1dP2sGObsdG4mqUO4USl4YSuUt9HJbbeU" target="_blank" rel="noopener" class="btn-primary">Scarica la guida</a>
+      </div>
+      <div class="cta-card">
+        <div class="cta-card-icon">☎</div>
+        <h3>Prenota una call</h3>
+        <p>Un confronto di circa venti minuti con la dott.ssa Zaimi per verificare il fondo più coerente con la scuola, stimare il plafond già maturato e valutare un'eventuale modalità di affiancamento.</p>
+        <a href="https://calendar.app.google/eDDatocxo7WVHbga6" target="_blank" rel="noopener" class="btn-secondary">Prenota una call →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <span class="footer-logo">BLM PR<span>✳</span>JECT</span>
+  <p>© BLM Project srl · Tutti i diritti riservati</p>
+</footer>
+
+</body>
+</html>
