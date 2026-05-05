@@ -293,6 +293,109 @@
   .d3 { animation-delay: .35s; }
   .d4 { animation-delay: .5s; }
   .d5 { animation-delay: .65s; }
+
+  /* ── MODAL LEAD FORM ── */
+  .modal-overlay {
+    position: fixed; inset: 0;
+    background: rgba(20,34,58,0.78);
+    backdrop-filter: blur(4px);
+    z-index: 1000;
+    display: none;
+    align-items: center; justify-content: center;
+    padding: 1.5rem;
+    animation: fadeIn .25s ease;
+  }
+  .modal-overlay.is-open { display: flex; }
+  .modal {
+    background: var(--white);
+    width: 100%; max-width: 540px;
+    padding: 2.6rem 2.4rem 2rem;
+    border-top: 4px solid var(--gold);
+    box-shadow: 0 30px 80px rgba(20,34,58,.35);
+    position: relative;
+    animation: modalUp .35s ease;
+    max-height: 90vh; overflow-y: auto;
+  }
+  .modal-close {
+    position: absolute; top: .8rem; right: 1rem;
+    background: transparent; border: none;
+    font-size: 1.5rem; color: var(--gray);
+    cursor: pointer; line-height: 1; padding: .3rem .5rem;
+  }
+  .modal-close:hover { color: var(--navy-deep); }
+  .modal h3 {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 700; font-size: clamp(1.5rem, 4vw, 1.8rem);
+    color: var(--navy-deep); margin-bottom: .8rem; line-height: 1.15;
+  }
+  .modal-intro {
+    font-size: clamp(.92rem, 2.3vw, .98rem);
+    color: var(--text-soft);
+    margin-bottom: 1.6rem; line-height: 1.55;
+  }
+  .form-row { margin-bottom: 1rem; display: grid; gap: .35rem; }
+  .form-row label {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 600; font-size: .78rem;
+    letter-spacing: .14em; text-transform: uppercase;
+    color: var(--navy-mid);
+  }
+  .form-row input {
+    font-family: 'Barlow', sans-serif;
+    font-size: 1rem; color: var(--text);
+    padding: .7rem .85rem;
+    border: 1px solid var(--steel);
+    background: var(--white);
+    transition: border-color .15s;
+    outline: none;
+    border-radius: 0;
+  }
+  .form-row input:focus { border-color: var(--gold); }
+  .form-row.row-2 {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1rem;
+  }
+  .form-row.row-2 > div { display: grid; gap: .35rem; }
+  .modal-submit {
+    display: inline-flex; align-items: center; gap: .5rem;
+    background: var(--gold); color: #fff;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 700; font-size: 1rem;
+    letter-spacing: .15em; text-transform: uppercase;
+    padding: .95rem 2rem; border: none;
+    cursor: pointer; transition: background .2s;
+    width: 100%; justify-content: center; margin-top: .5rem;
+  }
+  .modal-submit:hover:not(:disabled) { background: var(--gold-light); }
+  .modal-submit:disabled { opacity: .65; cursor: not-allowed; }
+  .modal-privacy {
+    font-size: .78rem; color: var(--gray);
+    margin-top: 1rem; line-height: 1.5;
+  }
+  .modal-status {
+    margin-top: 1rem;
+    padding: .75rem 1rem;
+    border-left: 3px solid var(--gold);
+    background: var(--bg-alt);
+    font-size: .9rem; color: var(--navy-deep);
+    display: none; line-height: 1.45;
+  }
+  .modal-status.is-error {
+    border-left-color: #b3361f;
+    color: #6e2114; background: #fbeae6;
+  }
+  .modal-status.is-visible { display: block; }
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+  }
+  @keyframes modalUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  @media (max-width: 540px) {
+    .form-row.row-2 { grid-template-columns: 1fr; }
+    .modal { padding: 2rem 1.5rem 1.5rem; }
+  }
 </style>
 </head>
 <body>
@@ -319,7 +422,7 @@
     <p class="hero-sub a d3">Ogni mese versate un contributo che potrebbe finanziare la formazione del Vostro personale.</p>
     <p class="hero-alert a d4">Nella maggior parte delle scuole paritarie, quella quota non arriva mai a destinazione.</p>
     <div class="btn-group a d5">
-      <a href="https://drive.google.com/uc?export=download&id=1RUK36a2PurFrTLgldA7F2A5sxea2sSwm" target="_blank" rel="noopener" class="btn-primary">↓ Scarica la guida gratuita</a>
+      <a href="#" data-action="download-guide" class="btn-primary">↓ Scarica la guida gratuita</a>
       <a href="https://calendar.app.google/eDDatocxo7WVHbga6" target="_blank" rel="noopener" class="btn-secondary">Prenota una call →</a>
     </div>
   </div>
@@ -364,7 +467,6 @@
         <p>BLM Project affianca le scuole paritarie nella gestione tecnica e amministrativa: scelta del fondo più adatto, adesione, costruzione del piano formativo, rendicontazione, scadenze; senza oneri operativi per gli uffici interni.</p>
         <p>L'affiancamento è attivabile in qualsiasi fase, sia in caso di prima adesione sia per scuole che hanno già un fondo attivo. Il nostro intervento può partire in qualsiasi momento del percorso, non necessariamente dall'adesione iniziale.</p>
         <p>Per ambiti in cui abbiamo esperienza consolidata nel settore scolastico — intelligenza artificiale e sostenibilità — possiamo gestire direttamente l'erogazione. Su esigenze formative specifiche vengono attivati formatori qualificati.</p>
-        <p>Possiamo seguirti per:</p>
         <div class="pills">
           <span class="pill">Prima adesione</span>
           <span class="pill">Fondo già attivo</span>
@@ -390,7 +492,7 @@
         <div class="cta-card-icon">↓</div>
         <h3>Scarica la guida gratuita</h3>
         <p>Un documento che spiega il funzionamento dei fondi paritetici interprofessionali per le scuole paritarie, i criteri di scelta del fondo e i passaggi operativi.</p>
-        <a href="https://drive.google.com/uc?export=download&id=1RUK36a2PurFrTLgldA7F2A5sxea2sSwm" target="_blank" rel="noopener" class="btn-primary">Scarica la guida</a>
+        <a href="#" data-action="download-guide" class="btn-primary">Scarica la guida</a>
       </div>
       <div class="cta-card">
         <div class="cta-card-icon">☎</div>
@@ -407,6 +509,152 @@
   <span class="footer-logo">BLM PR<span>✳</span>JECT</span>
   <p>© BLM Project srl · Tutti i diritti riservati</p>
 </footer>
+
+<!-- MODAL LEAD FORM -->
+<div class="modal-overlay" id="leadModal" aria-hidden="true">
+  <div class="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+    <button class="modal-close" type="button" aria-label="Chiudi">×</button>
+    <p class="section-label">Scarica la guida</p>
+    <h3 id="modalTitle">Pochi dati e parte il download</h3>
+    <p class="modal-intro">Compila i campi qui sotto per ricevere la guida sui Fondi Paritetici Interprofessionali per le scuole paritarie.</p>
+    <form id="leadForm" novalidate>
+      <div class="form-row row-2">
+        <div>
+          <label for="lead-nome">Nome</label>
+          <input type="text" id="lead-nome" name="nome" required autocomplete="given-name">
+        </div>
+        <div>
+          <label for="lead-cognome">Cognome</label>
+          <input type="text" id="lead-cognome" name="cognome" required autocomplete="family-name">
+        </div>
+      </div>
+      <div class="form-row">
+        <label for="lead-email">Email</label>
+        <input type="email" id="lead-email" name="email" required autocomplete="email">
+      </div>
+      <div class="form-row">
+        <label for="lead-scuola">Scuola di riferimento</label>
+        <input type="text" id="lead-scuola" name="scuola" required autocomplete="organization">
+      </div>
+      <button type="submit" class="modal-submit" id="modalSubmit">Scarica la guida →</button>
+      <div class="modal-status" id="modalStatus" role="status" aria-live="polite"></div>
+      <p class="modal-privacy">I dati raccolti saranno trattati da BLM Project Srl per inviare la guida e per eventuali comunicazioni inerenti al servizio. Non saranno ceduti a terzi.</p>
+    </form>
+  </div>
+</div>
+
+<script>
+(function() {
+  // Endpoint Apps Script per la raccolta dati. Sostituire con l'URL ottenuto dal deploy del Web App.
+  var ENDPOINT_URL = "https://script.google.com/macros/s/AKfycbzwD3jYG_AQz-LhaU2asG0sV5kRyGg25OcS8QCDBvxLX0TifOUn_STU1mYc195sMwvg/exec";
+  var PDF_URL = "https://drive.google.com/uc?export=download&id=1dP2sGObsdG4mqUO4USl4YSuUt9HJbbeU";
+
+  var overlay = document.getElementById('leadModal');
+  var form = document.getElementById('leadForm');
+  var closeBtn = overlay.querySelector('.modal-close');
+  var submitBtn = document.getElementById('modalSubmit');
+  var statusBox = document.getElementById('modalStatus');
+
+  function openModal(e) {
+    if (e) e.preventDefault();
+    overlay.classList.add('is-open');
+    overlay.setAttribute('aria-hidden', 'false');
+    document.body.style.overflow = 'hidden';
+    setTimeout(function() {
+      var first = document.getElementById('lead-nome');
+      if (first) first.focus();
+    }, 200);
+  }
+
+  function closeModal() {
+    overlay.classList.remove('is-open');
+    overlay.setAttribute('aria-hidden', 'true');
+    document.body.style.overflow = '';
+    statusBox.classList.remove('is-visible', 'is-error');
+    statusBox.textContent = '';
+    submitBtn.disabled = false;
+    submitBtn.textContent = 'Scarica la guida →';
+  }
+
+  function showStatus(msg, isError) {
+    statusBox.textContent = msg;
+    statusBox.classList.toggle('is-error', !!isError);
+    statusBox.classList.add('is-visible');
+  }
+
+  // Bind dei bottoni "Scarica la guida"
+  document.querySelectorAll('a[data-action="download-guide"]').forEach(function(a) {
+    a.addEventListener('click', openModal);
+  });
+
+  closeBtn.addEventListener('click', closeModal);
+  overlay.addEventListener('click', function(e) {
+    if (e.target === overlay) closeModal();
+  });
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape' && overlay.classList.contains('is-open')) closeModal();
+  });
+
+  form.addEventListener('submit', function(e) {
+    e.preventDefault();
+
+    // Validazione minima
+    var nome = form.nome.value.trim();
+    var cognome = form.cognome.value.trim();
+    var email = form.email.value.trim();
+    var scuola = form.scuola.value.trim();
+
+    if (!nome || !cognome || !email || !scuola) {
+      showStatus('Compila tutti i campi prima di proseguire.', true);
+      return;
+    }
+    var emailValid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+    if (!emailValid) {
+      showStatus('Controlla il formato dell’email.', true);
+      return;
+    }
+
+    submitBtn.disabled = true;
+    submitBtn.textContent = 'Invio in corso...';
+    statusBox.classList.remove('is-visible', 'is-error');
+
+    var payload = {
+      nome: nome,
+      cognome: cognome,
+      email: email,
+      scuola: scuola,
+      timestamp: new Date().toISOString(),
+      fonte: window.location.href
+    };
+
+    var sendPromise;
+    if (ENDPOINT_URL && ENDPOINT_URL.indexOf('http') === 0) {
+      sendPromise = fetch(ENDPOINT_URL, {
+        method: 'POST',
+        mode: 'no-cors',
+        body: JSON.stringify(payload),
+        headers: { 'Content-Type': 'text/plain;charset=utf-8' }
+      });
+    } else {
+      // Endpoint non configurato: procediamo comunque con il download per non bloccare l'utente
+      sendPromise = Promise.resolve();
+    }
+
+    sendPromise.then(function() {
+      showStatus('Grazie. Il download della guida sta per partire.');
+      submitBtn.textContent = 'Download avviato';
+      setTimeout(function() {
+        window.open(PDF_URL, '_blank', 'noopener');
+        setTimeout(closeModal, 2000);
+      }, 600);
+    }).catch(function() {
+      showStatus('Si è verificato un errore. Riprova o scrivi a info@blmproject.com.', true);
+      submitBtn.disabled = false;
+      submitBtn.textContent = 'Scarica la guida →';
+    });
+  });
+})();
+</script>
 
 </body>
 </html>
